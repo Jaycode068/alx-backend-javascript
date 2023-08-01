@@ -1,17 +1,11 @@
-export default function cleanSet(set, startString) {
-  const matchingElements = new Set();
-
-  if (startString === undefined || startString === "") {
-    return " ";
-  } else {
-    set.forEach((element) => {
-      if (element.startsWith(startString)) {
-        const cleanedElement = element.substring(startString.length);
-        matchingElements.add(cleanedElement);
-      }
-    });
-
-    return [...matchingElements].join('-');
+const cleanSet = (set, startString) => {
+  if (startString === undefined || startString.length === 0) {
+    return '';
   }
-}
+  return [...set]
+    .filter((parametro) => (parametro !== undefined ? parametro.startsWith(startString) : ''))
+    .map((parametro) => (parametro !== undefined ? parametro.slice(startString.length) : ''))
+    .join('-');
+};
 
+export default cleanSet;
